@@ -5,11 +5,11 @@ html(lang="en")
     script.
       var gon = !{JSON.stringify(gon)};
   body
-    nav.navbar.navbar-expand-lg.navbar-light.bg-faded
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
       a.navbar-brand(href="/") Chat
-      button.navbar-toggler(data-toggle="collapse" data-target="#navbarSupportedContent")
+      button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
         span.navbar-toggler-icon
-      .collapse.navbar-collapse
+      .collapse.navbar-collapse(id="navbarNav")
         ul.navbar-nav.mr-auto
           li.nav-item.active
             a.nav-link(href="/") Home
@@ -17,3 +17,12 @@ html(lang="en")
       #chat
       // block content
     script(src='/assets/main.js')
+
+    //- nav.navbar.navbar-expand-lg.navbar-light.bg-faded
+    //-   a.navbar-brand(href="/") Chat
+    //-   button.navbar-toggler(data-toggle="collapse" data-target="#navbarSupportedContent")
+    //-     span.navbar-toggler-icon
+    //-   .collapse.navbar-collapse
+    //-     ul.navbar-nav.mr-auto
+    //-       li.nav-item.active
+    //-         a.nav-link(href="/") Home
