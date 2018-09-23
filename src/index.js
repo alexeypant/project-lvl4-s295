@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/application.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Provider from 'react-redux';
+import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import faker from 'faker';
 import cookies from 'js-cookie';
@@ -30,21 +30,15 @@ const store = createStore(
   ),
 );
 
-// store.dispatch(fetchTasks());
-
-const { channels, messages } = gon;
-
 const userName = faker.fake('{{name.firstName}} {{name.lastName}}');
 cookies.set('userName', userName);
 const socket = io();
 socket.on('newChannel', (data) => {
   const newChannel = data.data.attributes;
   store.dispatch(actions.addChannel({ newChannel }));
-  // console.log(newChannel);
 });
 
 socket.on('newMessage', (data) => {
-  console.log(data);
   const newMessage = data.data.attributes;
   store.dispatch(actions.addMessage({ newMessage }));
 });
@@ -52,9 +46,8 @@ socket.on('newMessage', (data) => {
 const mountNode = document.getElementById('chat');
 
 ReactDOM.render(
-  <App channels={channels} messages={messages} />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   mountNode,
 );
-
-
-// App(channels, messages);

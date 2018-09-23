@@ -21,7 +21,7 @@ export default class NewMessageForm extends React.Component {
       data: {
         data: {
           attributes: {
-            text: 'lorem ipsum',
+            text: this.state.input,
             userName: cookies.get('userName'),
           },
         },
