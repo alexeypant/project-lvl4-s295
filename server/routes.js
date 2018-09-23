@@ -83,12 +83,18 @@ export default (router, io) => {
     })
     .post('/channels/:channelId/messages', (ctx) => {
       const { data: { attributes } } = ctx.request.body;
+      // temp
+      //console.log(ctx);
+      // temp end
       const message = {
         ...attributes,
         channelId: Number(ctx.params.channelId),
         id: getNextId(),
       };
       state.messages.push(message);
+      // temp
+      console.log(`!!!! messages: ${state.messages}`);
+      // temp end
       ctx.status = 201;
       const data = {
         data: {

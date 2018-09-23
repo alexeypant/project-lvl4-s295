@@ -2,23 +2,42 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/application.css';
 import React from 'react';
 import { render } from 'react-dom';
-import ChannelsList from './components/ChannelsList';
-import NewMessageForm from './components/NewMessageForm';
-
 // import faker from 'faker';
 // import cookies from 'js-cookie';
 // import io from 'socket.io-client';
+import ChannelsList from './components/ChannelsList';
+import MessagesList from './components/MessagesList';
+import NewMessageForm from './components/NewMessageForm';
 
-const App = (channels) => {
-  const mountNode = document.getElementById('chat');
-  const vdom = (
-    <div>
-      <ChannelsList channels={channels} />
-      <NewMessageForm />
-    </div>
-  );
 
-  render(vdom, mountNode);
-};
+export default class App extends React.Component {
+  componentDidMount() {
 
-export default App;
+  }
+
+  render() {
+    const { channels, messages } = this.props;
+    return (
+      <div>
+        <ChannelsList channels={channels} />
+        <MessagesList messages={messages} />
+        <NewMessageForm />
+      </div>);
+  }
+}
+
+
+// const App = (channels, messages) => {
+//   const mountNode = document.getElementById('chat');
+//   const vdom = (
+//     <div>
+//       <ChannelsList channels={channels} />
+//       <MessagesList messages={messages} />
+//       <NewMessageForm />
+//     </div>
+//   );
+
+//   render(vdom, mountNode);
+// };
+
+// export default App;
