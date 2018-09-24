@@ -1,64 +1,30 @@
 import React from 'react';
-import axios from 'axios';
 import cookies from 'js-cookie';
+import { Field, reduxForm } from 'redux-form';
 
-export default class NewMessageForm extends React.Component {
-  state = {
-    input: '',
-  };
+class NewMessageForm extends React.Component {
 
-  handleChange = (e) => {
-    this.setState({
-      input: e.target.value,
-    });
-  }
-
-  handleButtonClick = (e) => {
-    e.preventDefault();
-    axios({
-      method: 'post',
-      url: '/api/v1/channels/0/messages',
-      data: {
-        data: {
-          attributes: {
-            text: this.state.input,
-            userName: cookies.get('userName'),
-          },
-        },
-      },
-    });
-    this.setState({
-      input: '',
-    });
+  sendMessage = (values) => {
+    // const { sendMessage, reset } = this.props;
+    this.props.sendMessage(values.text);
+    this.props.reset();
   }
 
   render() {
-    const { input } = this.state;
+    const { handleSubmit } = this.props;
     return (
-      <div className="input-group">
-        <form>
-          <div className="row">
-            <div className="col">
-              <input onChange={this.handleChange} type="text" className="form-control" placeholder="your message" value={input} />
-            </div>
-            <div className="col">
-              <button onClick={this.handleButtonClick} type="submit" className="btn btn-primary">Submit</button>
-            </div>
+      <form className="newMessageForm" onSubmit={handleSubmit(this.sendMessage)}>
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="basic-addon1">{cookies.get('userName')}</span>
           </div>
-        </form>
-      </div>
+          <Field name="text" required component="input" type="text" />
+        </div>
+      </form>
     );
   }
 }
 
-// axios({
-//   method: 'post',
-//   url: '/api/v1/channels',
-//   data: {
-//     data: {
-//       attributes: {
-//         name: 'oneMore',
-//       },
-//     },
-//   },
-// });
+export default reduxForm({
+  form: 'newMessage',
+})(NewMessageForm);

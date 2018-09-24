@@ -3,7 +3,10 @@ import React from 'react';
 const MessagesList = (props) => {
   const { messages } = props;
   return (
-    <ul>{messages.map(msg => <li key={msg.id}>{msg.userName}: {msg.text}</li>)}</ul>
+    <div className="messagesList">
+      {messages.map(msg => <div key={msg.id}><b>{msg.userName}</b>: {msg.text}</div>)
+      }
+    </div>
   );
 };
 

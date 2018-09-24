@@ -6,7 +6,7 @@ import { channelsSelector } from '../selectors';
 const Container = connect(
   (state) => {
     const props = {
-      tasks: channelsSelector(state),
+      channels: channelsSelector(state),
     };
     return props;
   },

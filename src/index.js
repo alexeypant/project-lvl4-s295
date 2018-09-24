@@ -1,8 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/application.css';
+import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import faker from 'faker';
 import cookies from 'js-cookie';
@@ -25,7 +27,7 @@ const store = createStore(
   reducers,
   gon,
   compose(
-    // applyMiddleware(thunk),
+    applyMiddleware(thunk),
     devtoolMiddleware,
   ),
 );
