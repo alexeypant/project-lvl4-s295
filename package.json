@@ -39,6 +39,7 @@
     "@babel/preset-stage-0": "^7.0.0-beta.46",
     "axios": "^0.18.0",
     "babel-loader": "^8.0.0-beta.2",
+    "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.1.0",
     "classnames": "^2.2.5",
     "css-loader": "^0.28.11",

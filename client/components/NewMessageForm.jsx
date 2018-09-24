@@ -3,7 +3,6 @@ import cookies from 'js-cookie';
 import { Field, reduxForm } from 'redux-form';
 
 class NewMessageForm extends React.Component {
-
   sendMessage = (values) => {
     // const { sendMessage, reset } = this.props;
     this.props.sendMessage(values.text);
