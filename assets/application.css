@@ -1,52 +1,7 @@
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
- }
 
 .fade.in {
   opacity: 1;
 }
 
-body {
-  position: relative;
-  /* background-color: yellow; */
-}
 
-.app {
-  height: 80vh;
-  width: 100%;
-  /* background-color: greenyellow; */
-}
 
-.sideBar {
-  position: relative;
-  display: inline-block;
-  width: 10%;
-  height: 100%;
-  /* background-color: gold; */
-}
-
-.channelsList {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-}
-
-.centralPanel {
-  position: relative;
-  display: inline-block;
-  width: 90%;
-  height: 100%;
-}
-
-.messagesList {
-  display: inline-block;
-  width: 100%;
-  height: 90%;
-  overflow: scroll;
-}
-
-.newMassageForm {
-  display: inline-block;
-}

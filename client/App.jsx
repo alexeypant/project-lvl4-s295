@@ -1,17 +1,18 @@
 import React from 'react';
-import ChannelsList from './containers/ChannelsList';
-import MessagesList from './containers/MessagesList';
-import NewMessageForm from './containers/NewMessageForm';
-
+import ChannelsList from './components/ChannelsList';
+import MessagesList from './components/MessagesList';
+import NewMessageForm from './components/NewMessageForm';
 
 const App = () => (
-  <div className="app">
-    <div className="sideBar">
-      <ChannelsList />
-    </div>
-    <div className="centralPanel">
-      <MessagesList />
-      <NewMessageForm />
+  <div>
+    <div className="row">
+      <div className="col-2 sidebar">
+        <ChannelsList />
+      </div>
+      <div className="col-10">
+        <MessagesList />
+        <NewMessageForm />
+      </div>
     </div>
   </div>
 );

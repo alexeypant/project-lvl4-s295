@@ -16,9 +16,22 @@ const messages = handleActions({
   },
 }, {});
 
+const messageSendingState = handleActions({
+  [actions.sendMessageRequest]() {
+    return 'requested';
+  },
+  [actions.sendMessageFailure]() {
+    return 'failed';
+  },
+  [actions.sendMessageSuccess]() {
+    return 'succeeded';
+  },
+}, '');
+
 
 export default combineReducers({
   channels,
   messages,
   form: formReducer,
+  messageSendingState,
 });

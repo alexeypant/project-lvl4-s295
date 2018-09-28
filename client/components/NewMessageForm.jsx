@@ -1,29 +1,38 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import cookies from 'js-cookie';
 import { Field, reduxForm } from 'redux-form';
+import * as actionCreators from '../actions';
 
-class NewMessageForm extends React.Component {
-  sendMessage = (values) => {
-    // const { sendMessage, reset } = this.props;
-    this.props.sendMessage(values.text);
-    this.props.reset();
+const mapStateToProps = (state) => {
+  const props = {
+    currentChannelId: state.currentChannelId,
+    messageSendingState: state.messageSendingState,
+  };
+  return props;
+};
+
+@connect(mapStateToProps, actionCreators)
+@reduxForm({ form: 'newMessage' })
+export default class NewMessageForm extends React.Component {
+  onSubmit = (values) => {
+    const { sendMessage, reset } = this.props;
+    sendMessage(values.text);
+    reset();
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, messageSendingState } = this.props;
+    const isDisabled = messageSendingState === 'requested';
+    const userName = cookies.get('userName');
     return (
-      <form className="newMessageForm" onSubmit={handleSubmit(this.sendMessage)}>
-        <div className="input-group mb-3">
-          <div className="input-group-prepend">
-            <span className="input-group-text" id="basic-addon1">{cookies.get('userName')}</span>
-          </div>
-          <Field name="text" required component="input" type="text" />
+      <form className="newMessageForm" onSubmit={handleSubmit(this.onSubmit)}>
+        <div className="row">
+          <div className="col-2 input-group-text">{userName}</div>
+          <Field className="col-6" name="text" required component="input" type="text" />
+          <button className="col-2 btn btn-primary" type="submit" disabled={isDisabled}>Send</button>
         </div>
       </form>
     );
   }
 }
-
-export default reduxForm({
-  form: 'newMessage',
-})(NewMessageForm);
