@@ -6,7 +6,7 @@ import NewMessageForm from './components/NewMessageForm';
 const App = () => (
   <div>
     <div className="row">
-      <div className="col-2 sidebar">
+      <div className="col-2">
         <ChannelsList />
       </div>
       <div className="col-10">

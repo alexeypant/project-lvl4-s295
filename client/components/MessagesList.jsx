@@ -12,7 +12,6 @@ const mapStateToProps = (state) => {
 
 @connect(mapStateToProps, actionCreators)
 export default class MessagesList extends React.Component {
-
   renderMessagesList = messages => messages.map(msg => (
     <div key={msg.id}>
       <b>{msg.userName}</b>
