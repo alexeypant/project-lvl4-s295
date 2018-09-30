@@ -1,4 +1,4 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
 import { reducer as formReducer } from 'redux-form';
@@ -7,6 +7,12 @@ import * as actions from '../actions';
 const channels = handleActions({
   [actions.addChannel](state, { payload: { newChannel } }) {
     return { ...state, [newChannel.id]: newChannel };
+  },
+}, 1);
+
+const currentChannelId = handleActions({
+  [actions.setCurrentChannel](state, { payload: { id } }) {
+    return id;
   },
 }, {});
 
@@ -34,4 +40,5 @@ export default combineReducers({
   messages,
   form: formReducer,
   messageSendingState,
+  currentChannelId,
 });

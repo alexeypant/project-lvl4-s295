@@ -16,9 +16,8 @@ const mapStateToProps = (state) => {
 @reduxForm({ form: 'newMessage' })
 export default class NewMessageForm extends React.Component {
   onSubmit = (values) => {
-    const { sendMessage, reset } = this.props;
-    sendMessage(values.text);
-    reset();
+    const { sendMessage, currentChannelId, reset } = this.props;
+    sendMessage(values.text, currentChannelId, reset);
   }
 
   render() {
